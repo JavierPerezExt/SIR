@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="83101a49-0a72-4968-82cd-2f01d9febe69" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FirmasDigital.xsd" MetadataType="Schema" ID="9c974c4f-bfea-4e46-afdc-bb06ce95a7e5" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd1" />
+    <MetadataFile FileName="FirmasDigital1.xsd" MetadataType="Schema" ID="b865eab8-7975-4c9b-88be-dd264a045073" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd3" />
+    <MetadataFile FileName="FirmasDigital.disco" MetadataType="Disco" ID="1d95bd7b-f472-455c-bf07-a98ce86c84ab" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?disco" />
+    <MetadataFile FileName="FirmasDigital2.xsd" MetadataType="Schema" ID="0ab82d0c-d43b-409d-9b7c-b4c367af1ea1" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd0" />
+    <MetadataFile FileName="FirmasDigital.wsdl" MetadataType="Wsdl" ID="5fa61308-c3ce-4de2-a784-1e188ed061e0" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?wsdl" />
+    <MetadataFile FileName="FirmasDigital3.xsd" MetadataType="Schema" ID="51a3d200-301e-4d3d-bf9b-2f7cd905c0bd" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

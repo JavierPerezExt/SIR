@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dfdc9f92-e4fa-4564-a9c3-4d31c859dfc3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Reporteador.wsdl" MetadataType="Wsdl" ID="61ded593-c5cc-466a-b32a-4fc39ffb6bba" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc?wsdl" />
+    <MetadataFile FileName="Reporteador.xsd" MetadataType="Schema" ID="0a4ea5af-9779-4acc-84ca-f9deac70b043" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc?xsd=xsd2" />
+    <MetadataFile FileName="Reporteador1.xsd" MetadataType="Schema" ID="418fa123-51a8-4e1c-8381-7fe58fd1321d" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc?xsd=xsd0" />
+    <MetadataFile FileName="Reporteador.disco" MetadataType="Disco" ID="75196d16-e036-4469-8f92-c9e2619f7cc2" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc?disco" />
+    <MetadataFile FileName="Reporteador2.xsd" MetadataType="Schema" ID="10cbe0e7-7055-4a9a-9635-d5dd50aad2f2" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Reporteador/Reporteador.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

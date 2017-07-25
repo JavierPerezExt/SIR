@@ -4,14 +4,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+
     <asp:ContentPlaceHolder id="head" runat="server">
         <script src="../Scripts/jquery-1.10.2.js"></script>
         <script src="../Scripts/jquery-ui.js"></script>
         <script src="../Scripts/bootstrap.min.js"></script>
+        <script src="../Scripts/jquery.numeric.js"></script>
         <script src="../Scripts/jquery.maskedinput.js"></script>
         <script src="../Scripts/jquery.tablePagination.0.1.js"></script>
         <script src="../Scripts/Master.js"></script>
-        
+        <script src="../Scripts/jquery.mask.js"></script> 
+        <script src="../Scripts/jquery.maskMoney.js"></script>
+        <script src="../Scripts/wickedpicker.js"></script> 
     </asp:ContentPlaceHolder>
 </head>
 
@@ -36,6 +42,7 @@
             <link href="../Content/jquery-ui.css" rel="stylesheet" />
             <link href="../Content/jquery-ui.min.css" rel="stylesheet" />
             <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+            <link href="../Content/wickedpicker.css" rel="stylesheet" />
         </div>
         
         <div id="div_Scripts">
@@ -61,30 +68,30 @@
                     </div>
 
                     
-                    <div id="menu_principal" >
+                    <div id="menu_principal" runat="server" >
 
-                            <ul id="menu">
+                            <%--<ul id="menu">
                                 <li><div id="casita">
-                                        <a href="Inicio.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('home','','../Images/menu_home-over.png',1)" onmousedown="MM_swapImage('home','','../Images/menu_home-down.png',1)">
-                                        <img src="../Images/menu_home-up.png" alt="Inicio" width="26" height="22" border="0" id="home" /></a>
+                                        <a href="../Pages/Inicio.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('home','','../Images/menu_home-over.png',1)" onmousedown="MM_swapImage('home','','../Images/menu_home-down.png',1)">
+                                        <img class="home" src="../Images/menu_home-up.png" alt="Inicio" width="26" height="22" border="0" id="home" /></a>
                                     </div>
                                 </li>            
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li>Ordenes de Pago
                                     <ul>
-                                        <li><a href="OrdenPago.aspx">Facultativos</a></li> 
-                                        <li><a href="Login.aspx">Saldos</a></li>
+                                        <li><a href="../OrdenPago/Facultativo.aspx">Registro Facultativo</a></li> 
+                                        <li><a href="Login.aspx">Registro Saldos</a></li>
                                     </ul>       
                                 </li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li><a href="FirmasElectronicas.aspx">Firmas Electrónicas</a></li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li><a href="NotasCobertura.aspx">Notas de Cobertura</a></li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li><a href="DistReaseguro.aspx">Distribución de Reaseguro</a></li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li><a href="AjusteReaseguro.aspx">Ajustes</a></li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li>Reportes
                                     <ul>
                                         <li><a>Reporteador</a></li>
@@ -92,25 +99,18 @@
                                         <li><a>Temporarios</a></li>
                                    </ul>
                                 </li>
-                                <li><img src="../Images/menu_sep-hz.png" width="2" height="23" /></li>
+                                <li><img class="separador" /></li>
                                 <li>Recordatorios
                                     <ul>
                                         <li><a>Siniestros</a>
                                             <ul>
-                                                <li>
-                                                    <a>Administración</a>
-                                                </li>
-                                                <li>
-                                                    <a>Configuración</a>
-                                                </li>
-                                                <li>
-                                                    <a>Consulta de Facultativos</a>
-                                                </li>
+                                                <li><a href="../Recordatorios/RecSiniestrosAdmin.aspx">Configuración del Recordatorio</a></li> 
+                                                <li><a href="../Recordatorios/ConsultaFacultativos.aspx">Consulta de Facultativos</a></li> 
                                             </ul>
                                         </li>
                                    </ul>
                                 </li>
-                             </ul>
+                             </ul>--%>
 
                     </div>
 
@@ -119,11 +119,13 @@
                             <asp:HiddenField runat="server" ID="hid_codUsuario" Value="" />
                             <asp:HiddenField runat="server" ID="hid_codSuc" Value="0" />
                             <asp:HiddenField runat="server" ID="hid_codSector" Value="0" />
-                            <asp:HiddenField runat="server" ID="hid_HostName" Value="" />
+                            <asp:HiddenField runat="server" ID="hid_mail" Value="0" />
                             <img src="../Images/user-icon.png" />
                             <asp:Label runat="server" ID="lbl_Usuario" Text="Inicia Sesión"></asp:Label>
                             |
                             <asp:Label runat="server" ID="lbl_Sucursal" Text="Ciudad de México"></asp:Label>
+                            | 
+                            <asp:Label runat="server" ID="lbl_Sector" Text="SISTEMAS"></asp:Label>
                             | 
                             <asp:LinkButton runat="server" ForeColor="White" ID="lnk_CerrarSesion" text="Cerrar Sesión"></asp:LinkButton>
                     </div>        
@@ -209,35 +211,39 @@
         </div>
 
         <div id="Mensajes" style="width:400px; height:185px"  class="modal-mensaje">
-            <div class="cuadro-titulo" style="height:30px">
-                <asp:label ID="lbl_TituloMensaje" runat="server" Text="TITULO" CssClass="titulo-modal" Height="30px"></asp:label>
-                <button type="button" style="color:white;" class="close"  data-dismiss="modal">&times;</button>
-                <asp:HiddenField runat="server" ID="hid_ControlASP" Value="" />
-            </div>
-            <div class="modal-body" style="height:155px">
-                <div class="row">
-                     <div class="col-md-2">
-                         <img id="img_advertencia"  src="../Images/advertencia_mini.png"/>
-                         <img id="img_confirma"  src="../Images/confirma_mini.png" />
-                         <img id="img_error"   src="../Images/error_mini.png" />
-                         <img id="img_pregunta"  src="../Images/pregunta_mini.png" />
-                     </div>
-                     <div class="col-md-10">
-                         <asp:label ID="lbl_Mensaje" runat="server" Text="Texto Prueba" BorderStyle="None" CssClass="texto-mensaje" Height="100px" Width="300px" TextMode="MultiLine"></asp:label>
-                     </div>
-                </div>
+             <asp:UpdatePanel runat="server" ID="upMensajes">
+                    <ContentTemplate>
+                        <div class="cuadro-titulo" style="height:30px">
+                            <asp:label ID="lbl_TituloMensaje" runat="server" Text="TITULO" CssClass="titulo-modal" Height="30px"></asp:label>
+                            <button type="button" style="color:white;" class="close"  data-dismiss="modal">&times;</button>
+                            <asp:HiddenField runat="server" ID="hid_ControlASP" Value="" />
+                        </div>
+                        <div class="modal-body" style="height:155px">
+                            <div class="row">
+                                 <div class="col-md-2">
+                                     <img id="img_advertencia"  src="../Images/advertencia_mini.png"/>
+                                     <img id="img_confirma"  src="../Images/confirma_mini.png" />
+                                     <img id="img_error"   src="../Images/error_mini.png" />
+                                     <img id="img_pregunta"  src="../Images/pregunta_mini.png" />
+                                 </div>
+                                 <div class="col-md-10">
+                                     <asp:label ID="lbl_Mensaje" runat="server" Text="Texto Prueba" BorderStyle="None" CssClass="texto-mensaje" Height="100px" Width="300px" TextMode="MultiLine"></asp:label>
+                                 </div>
+                            </div>
 
-                <div style="width:100%; text-align:right;">
-                    <button id="btn_Si"  type="button" class="btn botones" onclick="fn_Repuesta();">
-                        <span>Si</span>
-                    </button> 
+                            <div style="width:100%; text-align:right;">
+                                <button id="btn_Si"  type="button" class="btn botones" onclick="fn_Repuesta();">
+                                    <span>Si</span>
+                                </button> 
 
-                    <button id="btn_No" type="button" class="btn botones" data-dismiss="modal">
-                        <span>No</span>
-                    </button> 
-                </div>
+                                <button id="btn_No" type="button" class="btn botones" data-dismiss="modal">
+                                    <span>No</span>
+                                </button> 
+                            </div>
                 
-            </div>
+                        </div>
+                    </ContentTemplate>
+              </asp:UpdatePanel>
         </div> 
         
         <!-- Modal -->
@@ -275,8 +281,621 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-        </div>   
+        </div> 
+        
+        
+        <div id="Poliza" style="width:1300px; height:650px"  class="modal-poliza">
+               <div class="cuadro-titulo" style="height:30px">
+                    <button type="button" style="color:white;" class="close"  data-dismiss="modal">&times;</button>
+                    <div class="titulo-modal"><label id="lblPoliza">Pólizas</label></div>
+               </div>
 
-    </form>
+            
+               <div class="modal-body" style="height:638px">
+                   <asp:UpdatePanel runat="server" ID="upPolizas">
+                       <ContentTemplate>
+                           <asp:HiddenField runat="server" ID="hid_Control_Pol" Value="" />
+                           <asp:CheckBox runat="server" ID="chk_Vencidas" Text="Garantias Programadas" CssClass="etiqueta-control" AutoPostBack="true" />
+                          
+                           <table class="tabla">
+                               <tr>
+                                   <td>
+                                       <asp:Label runat="server" ID="lbl_fechaDe" class="col-md-1 etiqueta-control" Width="80px">Fecha</asp:Label>
+                                       <asp:TextBox runat="server" ID="txt_FechaIni" CssClass="estandar-control Fecha" Width="90px" Height="26px" Enabled="false"></asp:TextBox>
+                                   </td>
+                                   <td>
+                                       <asp:Label runat="server" ID="lbl_fechaA" class="col-md-1 etiqueta-control" Width="40px">A</asp:Label>
+                                   </td>
+                                   <td>
+                                       
+                                       <asp:TextBox runat="server" ID="txt_FechaFin" CssClass="estandar-control Fecha" Width="90px" Height="26px" Enabled="false"></asp:TextBox>
+                                   </td>
+                                   
+                                   <td>
+
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td colspan="4">
+                                       <asp:Label runat="server" class="col-md-1 etiqueta-control" Width="80px">Sucursal</asp:Label>
+                                       <asp:DropDownList runat="server" ID="ddl_SucursalPol" CssClass="estandar-control" Width="445px" Height="26px"></asp:DropDownList>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>
+                                       <asp:Label runat="server" class="col-md-1 etiqueta-control" Width="80px">Ramo</asp:Label>
+                                       <asp:TextBox runat="server" ID="txtClaveRam" CssClass="estandar-control cod" Width="90px" Height="26px"></asp:TextBox>
+                                   </td>
+                                   <td>
+                                       <button type="button" id="btn_SelRam" class="btn botones" data-toggle="modal" style="width: 40px; height: 26px;" data-target="#EsperaModal">...</button>
+                                   </td>
+                                   <td colspan="2">
+                                       <asp:TextBox runat="server" ID="txtSearchRam" Enabled="false" CssClass="estandar-control desc_ramo" Width="308px" Height="26px"></asp:TextBox>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>
+                                       <asp:Label runat="server" class="col-md-1 etiqueta-control" Width="80px">Póliza</asp:Label>
+                                       <asp:TextBox runat="server" ID="txt_NoPoliza" CssClass="estandar-control nro_pol" Width="90px" Height="26px"></asp:TextBox>
+                                   </td>
+                                   <td colspan="3">
+                                       <asp:LinkButton id="btn_Busca_Endoso" runat="server" class="btn botones boton-largo Endoso">
+                                            <span>
+                                                <img class="btn-buscar"/>
+                                                Endosos
+                                            </span>
+                                       </asp:LinkButton>
+             
+                                       <asp:LinkButton id="btn_Cancela_Endoso" runat="server" Visible="false" class="btn botones boton-largo">
+                                            <span>
+                                                <img class="btn-cancelar"/>
+                                                Cancelar
+                                            </span>
+                                       </asp:LinkButton>
+                                   </td>
+                               </tr>
+                           </table>
+
+   
+                           <asp:Panel runat="server" ID="pnlPolizas" Width="100%" Height="410px" ScrollBars="Both">
+                               <asp:GridView runat="server" ID="gvd_GrupoPolizas" AutoGenerateColumns="false" GridLines="Horizontal" 
+                                             DataKeyNames="id_pv,cod_grupo_endo,cod_suc,cod_ramo,nro_pol,aaaa_endoso,nro_endoso" AllowPaging="true" 
+                                             CssClass="grid-view" HeaderStyle-CssClass="header" AlternatingRowStyle-CssClass="altern"
+                                             PageSize="11" ShowHeaderWhenEmpty="true">
+                                   <Columns>
+                                       <asp:TemplateField HeaderText="">
+                                           <ItemTemplate>
+                                               <asp:CheckBox runat="server" ID="chk_SelPol" Checked='<%# Eval("tSEL_Val") %>' />
+                                               <asp:HiddenField runat="server" ID="hid_IdPv" Value="" />
+                                               <asp:TextBox runat="server" CssClass="NoDisplay id_pv" Text='<%# Eval("id_pv") %>' />
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Suc">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="txt_Sucursal" CssClass="cod" Text='<%# Eval("cod_suc")%>' Width="30px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Ram">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="txt_Ramo" CssClass="cod" Text='<%# Eval("cod_ramo")%>' Width="30px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Poliza">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="txt_Poliza" Text='<%# Eval("nro_pol")%>' CssClass="nro_pol" Width="70px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Suf">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="txt_Sufijo" CssClass="cod" Text='<%# Eval("aaaa_endoso")%>' Width="35px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="End">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="txt_Endoso" CssClass="cod" Text='<%# Eval("nro_endoso")%>' Width="35px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="">
+                                           <ItemTemplate>
+                                               <div runat="server" id="div_Ajuste" style="width: 85px;">
+                                                   <asp:Label runat="server" Height="30px" ID="lbl_Ajuste" class="col-md-1 control-label" Width="60px" Text="Ajuste: "></asp:Label>
+                                                   <asp:label runat="server" Height="30px" ID="txt_Ajuste" CssClass="cod" Text='<%# Eval("nro_reas")%>' Width="20px"></asp:label>
+                                               </div>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="">
+                                           <ItemTemplate>
+                                               <asp:LinkButton id="btn_Aclaracion" runat="server" class="btn botones boton-mediano MuestraAclaracion" data-toggle="modal" data-target="#EsperaModal">
+                                                    <span>
+                                                        <img class="btn-buscar"/>
+                                                        Aclaraciones
+                                                    </span>
+                                               </asp:LinkButton>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="">
+                                           <ItemTemplate>
+                                               <asp:LinkButton id="btn_Cobranzas" runat="server" CommandName="Cobranzas" class="btn botones boton-mediano">
+                                                    <span>
+                                                        <img class="btn-buscar"/>
+                                                        Cobranzas
+                                                    </span>
+                                               </asp:LinkButton>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Descarta Pago">
+                                           <ItemTemplate>
+                                               <div style="width: 100px; text-align: center;">
+                                                   <asp:CheckBox runat="server" ID="chk_NoPago" AutoPostBack="true" OnCheckedChanged="chk_NoPago_CheckedChanged" Checked='<%# Eval("sn_NoPago") %>'></asp:CheckBox>
+                                               </div>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Asegurado">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_Asegurado" Text='<%# Eval("Asegurado")%>' Width="200px" ></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Desde">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_Desde" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fec_vig_desde")))%>' Width="75px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Hasta">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_Hasta" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fec_vig_hasta")))%>' Width="75px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Grupo">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_GrupoEndoso" Text='<%# Eval("GrupoEndoso")%>' Width="200px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Tipo">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_GrupoTipoEndoso" Text='<%# Eval("TipoEndoso")%>' Width="200px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="(Emisión)">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_PrimaEmitida" Text='<%# String.Format("{0:#,#0.00}", CDbl(Eval("PrimaEmitida")))  %>' Width="95px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="(Cobranzas)">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_PrimaAplicada" Text='<%# String.Format("{0:#,#0.00}", CDbl(Eval("PrimaAplicada")))  %>' Width="95px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="(Reaseguro)">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_PrimaPagada" Text='<%# String.Format("{0:#,#0.00}", CDbl(Eval("PrimaReaseguro")))  %>' Width="95px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="Emisor">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_Emisor" Text='<%# Eval("Emisor")%>' Width="170px" ></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="Suscriptor">
+                                           <ItemTemplate>
+                                               <asp:label runat="server" Height="30px" ID="lbl_Suscriptor" Text='<%# Eval("Suscriptor")%>' Width="170px"></asp:label>
+                                           </ItemTemplate>
+                                       </asp:TemplateField>
+                                   </Columns>
+                                   <PagerStyle CssClass="pager" />
+                                   <PagerSettings Mode="NumericFirstLast" FirstPageText="Primero" LastPageText="Ultimo" />
+                               </asp:GridView>
+                           </asp:Panel>
+
+                           <div style="width: 100%; text-align: right;">
+                               <asp:LinkButton id="btn_Aceptar_Endoso" runat="server" class="btn botones">
+                                    <span>
+                                        <img class="btn-aceptar"/>
+                                        Agregar
+                                    </span>
+                               </asp:LinkButton>
+
+                               <asp:LinkButton id="btn_Cerrar_Endoso" runat="server" class="btn botones"  data-dismiss="modal">
+                                    <span>
+                                        <img class="btn-cancelar"/>
+                                        Cerrar
+                                    </span>
+                               </asp:LinkButton>
+                           </div>
+                       </ContentTemplate>
+                   </asp:UpdatePanel>
+              </div>
+    </div>  
+
+    <div id="CobranzasModal" style="width:1300px; height:650px"  class="modal-poliza">
+      <asp:UpdatePanel runat="server" ID="upCobranzas">
+        <ContentTemplate>
+            <div class="cuadro-titulo" style="height:30px">
+                <button type="button" style="color:white;" class="close"  data-dismiss="modal">&times;</button>
+                <asp:HiddenField runat="server" ID="hid_Poliza" />
+                <table>
+                    <tr>
+                        <td><div class="titulo-modal"><asp:Label id="lbl_PolizaCobranzas" runat="server">Pólizas:</asp:Label></div></td>
+                        <td><asp:DropDownList runat="server" ID="ddl_Endoso" AutoPostBack="true" CssClass="estandar-control" Width="60px" Height="24px"></asp:DropDownList></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="modal-body" style="height:598px">
+                <asp:Label runat="server" Text="Pagadores:" CssClass="etiqueta-control"></asp:Label>
+                <asp:Panel runat="server" ID="pnlPagadores" Width="100%" Height="120px" ScrollBars="Both">
+                    <asp:GridView runat="server" ID="gvd_Pagadores" AutoGenerateColumns="false" CssClass="grid-view" 
+                                  HeaderStyle-CssClass="header" AlternatingRowStyle-CssClass="altern"
+                                  ShowHeaderWhenEmpty="true" DataKeyNames="id_pv,cod_aseg,cod_ind_pagador" >
+                        <Columns>
+                                <asp:TemplateField HeaderText="Codigo">
+                                    <ItemTemplate>
+                                        <asp:linkbutton runat="server" ID="lnk_Codigo" CommandName="DetallePagador" Text='<%# Eval("cod_aseg") %>' Width="60px"  CssClass="Centro"></asp:linkbutton>
+                                        <asp:hiddenfield runat="server" ID="hid_indPagador" value='<%# Eval("cod_ind_pagador") %>'></asp:hiddenfield>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Apellidos y Nombre">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Pagador" Text='<%# Eval("pagador")   %>' Width="300px" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Medios de Pago">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Medio" Text='<%# Eval("txt_desc")   %>' Width="140px" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Conducto de Pago">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Conducto" Text='<%# Eval("txt_desc_cond")   %>' Width="140px" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Medio Actual">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_MedioActual" Text='<%# Eval("Med_Pago_Act")   %>' Width="140px"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Conducto Actual">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ConductoActual" Text='<%# Eval("Cond_Act")   %>' Width="140px" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </asp:Panel>
+
+                <div class="clear padding5"></div>
+                <asp:Label runat="server" ID="lbl_DetPagador" CssClass="etiqueta-control">></asp:Label>
+                <asp:Panel runat="server" ID="pnlPagadorCuota" Width="100%" Height="230px" ScrollBars="Both">
+                    <asp:GridView runat="server" ID="gvd_PagadorCuota" AutoGenerateColumns="false" CssClass="grid-view" 
+                                  HeaderStyle-CssClass="header" AlternatingRowStyle-CssClass="altern"
+                                  ShowHeaderWhenEmpty="true" DataKeyNames="id_pv,cod_aseg,cod_ind_pagador,nro_cuota" >
+                        <Columns>
+                                <asp:TemplateField HeaderText="Cuota">
+                                    <ItemTemplate>
+                                        <asp:linkbutton runat="server" ID="lnk_Cuota" CommandName="DetalleCuotaPagador" Text='<%# Eval("nro_cuota") %>' Width="50px" CssClass="Centro"></asp:linkbutton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Documento">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Documento" Text='<%# Eval("Documento")   %>' Width="110px"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Vencimiento">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Venc" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fec_venc")))  %>' Width="100px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Fecha Inicio">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_inicio" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("inicio_vigencia")))  %>' Width="100px" CssClass="Centro" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Fecha Fin">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_fin" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fin_vigencia")))  %>'  Width="100px" CssClass="Centro" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Prima Neta">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_PrimaNeta" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_prima_me")))%>' Width="90px" CssClass="Derecha" ></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Recargos">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Recargos" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_rec_fin_me")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Der. Emision">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_DerEmision" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_der_emi_me")))%>' Width="110px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="I.V.A.">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_IVA" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_iva_me")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Prima Total">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_PrimaTotal" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_premio_me")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Imp. Art. 41">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ImpArt41" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_decreto_me")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="IVA Art. 41">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_IvaArt41" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_dto_me")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Compensado">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Compensado" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_compensado")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Pagos">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Pagos" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_pago_parcial")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Cancelado">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Cancelado" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_pago_cancelado")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Devuelto">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Devuelto" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_pago_devuelto")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Pendiente">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Pendiente" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_pago_pendiente")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Estado">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Estado" Text='<%# Eval("Estado")   %>' Width="180px"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Fecha Debito">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Debito" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fecha_debito")))  %>' Width="100px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </asp:Panel>
+
+                <div class="clear padding5"></div>
+                <asp:Label runat="server" ID="lbl_DetCuota" CssClass="etiqueta-control"></asp:Label>
+                <asp:Panel runat="server" ID="pnlDetalleCuota" Width="100%" Height="120px" ScrollBars="Both">
+                    <asp:GridView runat="server" ID="gvd_DetCuotaPagador" AutoGenerateColumns="false" CssClass="grid-view" 
+                                  HeaderStyle-CssClass="header" AlternatingRowStyle-CssClass="altern"  ShowHeaderWhenEmpty="true" >
+                        <Columns>
+                                <asp:TemplateField HeaderText="Pago">
+                                    <ItemTemplate>
+                                        <asp:label runat="server" ID="lbl_pago" CommandName="DetalleCuotaPagador" Text='<%# Eval("nro_correlativo") %>' Width="40px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Transacción">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_transaccion"  Text='<%# Eval("nro_recibo")   %>' Width="110px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="[Anulación]">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_anulacion" Text='<%# Eval("nro_recibo_anula")  %>' Width="90px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Aplicación">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Aplicacion"  Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fec_cobranza")))  %>' Width="100px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Prima Cobrada">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_PrimaCob" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_prima")))%>'  Width="120px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Der. Póliza">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_DerPoliza" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_gastos_emision")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Imp. IVA">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ImpIVA" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_iva")))%>' Width="90px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Recargo Fin">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Recargo" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_recargo")))%>' Width="110px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Prima Total">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_PrimaTotal" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_premio_bruto")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Fecha Pago">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_FechaPago" Text='<%# String.Format("{0:dd/MM/yyyy}", CDate(Eval("fec_real_pago")))  %>' Width="100px" CssClass="Centro"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Comisión Desc.">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ComDesc" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_comis_normal_descon")))%>' Width="120px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Imp. Art. 41">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ImpArt41" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_art41")))%>' Width="100px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Concepto">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_Concepto" Text='<%# Eval("text_caja") %>' Width="250px"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Imp. Cambio">
+                                    <ItemTemplate>
+                                            <asp:label runat="server" ID="lbl_ImpCambio" Text='<%# String.Format("{0:#,#0.0000}", CDbl(Eval("imp_cambio")))%>' Width="110px" CssClass="Derecha"></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </asp:Panel>
+
+                <div style="width:100%; text-align:right;">
+                    <asp:LinkButton id="btn_Cerrar_Cobranza" runat="server" class="btn botones"  data-dismiss="modal">
+                        <span>
+                            <img class="btn-cancelar"/>
+                            Cerrar
+                        </span>
+                    </asp:LinkButton>
+                </div>
+            </div>
+        </ContentTemplate>
+      </asp:UpdatePanel>
+    </div>
+
+    <div id="AclaracionesModal" style="width:1300px; height:650px"  class="modal-poliza">
+        <asp:UpdatePanel runat="server" ID="upAclaraciones" >
+         <ContentTemplate>
+            <div class="cuadro-titulo" style="height:30px">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <div class="titulo-modal"><label>Aclaraciones</label></div>
+            </div>
+
+            <div class="modal-body" style="height:600px">
+               <asp:Panel runat="server" Height="550px" Width="1280px" ScrollBars="Both">
+                   <asp:Label id="lbl_texto" runat="server" CssClass="Aclaracion" ></asp:Label>
+               </asp:Panel>
+                   
+               <div style="width:100%; text-align:right;">                   
+                    <asp:LinkButton id="btn_Cerrar_Aclaracion" runat="server" class="btn botones"  data-dismiss="modal">
+                        <span>
+                            <img class="btn-cancelar"/>
+                            Cerrar
+                        </span>
+                    </asp:LinkButton>
+                </div>
+            </div>
+         </ContentTemplate>
+       </asp:UpdatePanel>
+    </div>
+
+    <div id="Autorizacion" class="modal-catalogo">
+       <asp:UpdatePanel runat="server" ID="upAutoriza" >
+         <ContentTemplate>
+             <div class="cuadro-titulo" style="height:30px">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <div class="titulo-modal"><label>AUTORIZACIÓN DE USUARIO</label></div>
+             </div>
+
+             <div class="clear padding10"></div>
+
+             <table>
+                <tr>
+                    <td>
+                        <img class="profile-img" src ="../Images/Login.png" alt=""/>
+                    </td>
+                    <td>
+           
+                        <div class="input-group"> 
+                            <asp:label runat="server" class="col-md-1 etiqueta-control" Width="90px">Usuario</asp:label>
+
+                            <span class="input-group-addon">
+                                    <img src="../Images/user_text.png" height="15" width="15" />
+                            </span>
+                            <asp:TextBox runat="server" ID="txt_usuario" Width="163px" CssClass="form-control etiqueta-simple" Font-Size="12px" ></asp:TextBox>
+                        </div>
+     
+                        <div class="clear padding10"></div>
+
+                        <div class="input-group"> 
+                            <asp:label runat="server" class="col-md-1 etiqueta-control" Width="90px">Contraseña</asp:label>
+                            <span class="input-group-addon">
+                                <img src="../Images/pass_icon.png" height="15" width="15" />
+                            </span>
+                            <asp:TextBox runat="server" ID="txt_contraseña" Width="163px" CssClass="form-control etiqueta-simple" TextMode="Password" ></asp:TextBox>
+                        </div>
+
+                        <div class="clear padding10"></div>
+
+                        <div style="width:100%; padding-left:90px;">
+                            <asp:HiddenField runat="server" ID="hid_controlAuto" Value="" />
+                            <asp:LinkButton id="btn_Autorizar" runat="server" class="btn botones"  Width="100px">
+                                <span>
+                                    Autorizar
+                                </span>
+                            </asp:LinkButton>
+
+                            <asp:LinkButton id="btn_Cerrar" runat="server" class="btn botones"  Width="100px">
+                                <span>
+                                    Cerrar
+                                </span>
+                            </asp:LinkButton>
+                        </div>   
+                    </td>
+                </tr>
+            </table>
+         </ContentTemplate>
+       </asp:UpdatePanel>
+    </div>
+
+  </form>
 </body>
 </html>

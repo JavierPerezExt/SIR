@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4666b60c-2839-406d-83a7-716bf61ccf39" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://siigmxapp02/WS_GMX/Generales/Generales.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Generales3.xsd" MetadataType="Schema" ID="bba9c715-b30d-43f0-a619-337b5addce05" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?xsd=xsd3" />
+    <MetadataFile FileName="Generales.wsdl" MetadataType="Wsdl" ID="70931420-61a6-4190-984a-439cfdc7d6c9" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?wsdl" />
+    <MetadataFile FileName="Generales.xsd" MetadataType="Schema" ID="fcd9b57d-0b44-4107-8596-6c13bfabddb0" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?xsd=xsd1" />
+    <MetadataFile FileName="Generales1.xsd" MetadataType="Schema" ID="de6c4bbf-52ac-46eb-9f0d-2e35faf55290" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?xsd=xsd0" />
+    <MetadataFile FileName="Generales2.xsd" MetadataType="Schema" ID="25ec6f3b-8ad9-4db1-84de-26c917a21d57" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?xsd=xsd2" />
+    <MetadataFile FileName="Generales.disco" MetadataType="Disco" ID="3311cd87-87ad-4edd-a5ed-8235605b394f" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Generales/Generales.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

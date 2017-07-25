@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a2e8247-86f6-4384-b5aa-52d65ed204df" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RecSiniestros.xsd" MetadataType="Schema" ID="5519a3dd-0895-4530-91e1-b5f3130fb76d" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc?xsd=xsd1" />
+    <MetadataFile FileName="RecSiniestros1.xsd" MetadataType="Schema" ID="b925e0e6-0e93-49e0-846f-d3dab2abec77" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc?xsd=xsd2" />
+    <MetadataFile FileName="RecSiniestros.wsdl" MetadataType="Wsdl" ID="8f611dc5-1f5a-4442-9f98-62b1b96f8bc7" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc?wsdl" />
+    <MetadataFile FileName="RecSiniestros2.xsd" MetadataType="Schema" ID="9b039c71-0e55-46a7-90e1-d2ba7ca48388" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc?xsd=xsd0" />
+    <MetadataFile FileName="RecSiniestros.disco" MetadataType="Disco" ID="6edab722-b630-460e-a817-9d83e4dd8c32" SourceId="1" SourceUrl="http://siigmxapp02/WS_GMX/Reaseguro/Recordatorios/Siniestros/RecSiniestros.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

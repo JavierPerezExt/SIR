@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://siigmxapp02/WS_GMX/Reaseguro/FirmasDigital/FirmasDigital.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WS_GMX" />
+  <xs:element name="ActualizaFirma">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NumOp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="TipoPer" type="xs:int" />
+        <xs:element minOccurs="0" name="CodUsu" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaFirmaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ActualizaFirmaResult" nillable="true" type="q1:ArrayOfNullableOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtieneUsuarioFirmaE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TipoUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtieneUsuarioFirmaEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WS_GMX" minOccurs="0" name="ObtieneUsuarioFirmaEResult" nillable="true" type="q2:ArrayOfspS_UsuarioFirma_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtienePermisosXUsu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CodUsu" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtienePermisosXUsuResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WS_GMX" minOccurs="0" name="ObtienePermisosXUsuResult" nillable="true" type="q3:ArrayOfspS_PermisosxUSuFirma_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaDestinatarioFirma">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CodUsu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CodRol" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaDestinatarioFirmaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ActualizaDestinatarioFirmaResult" nillable="true" type="q4:ArrayOfNullableOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

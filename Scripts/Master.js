@@ -20,7 +20,6 @@ function PageLoadMaster() {
                             'Sep', 'Oct', 'Nov', 'Dic']
     });
 
-    $(".Fecha").mask("99/99/9999");
 
     //Botón Aceptar en Catalogo
     $("[id*=btn_Aceptar_Catalogo]").click(function () {
@@ -30,13 +29,93 @@ function PageLoadMaster() {
         for (i = 0; i <= Filas.length - 2; i++) {
             if ($('[id*=chk_Cat]')[i].checked == true) {
                 varSeleccion = varSeleccion + $('[id*=lbl_ClaveCat]')[i].innerText + '~' +
-                                                $('[id*=lbl_DesCat]')[i].innerText + '|';
+                                              $('[id*=lbl_DesCat]')[i].innerText + '~' +
+                                              $('[id*=lbl_Oculta1]')[i].innerText + '~' +
+                                              $('[id*=lbl_Oculta2]')[i].innerText + '~' +
+                                              $('[id*=lbl_Oculta3]')[i].innerText + '|';
             }
         }
 
         $("input[id$='hid_Seleccion']")[0].value = varSeleccion
         __doPostBack(this.name, '');
     });
+
+
+    //Botón Mostrar Aclaración
+    $("[id*=gvd_GrupoPolizas] .MuestraAclaracion").click(function () {
+        event.preventDefault ? event.preventDefault() : event.returnValue = false;
+        var row = $(this).closest("tr");
+        var id_pv = row.find('.id_pv');
+        fn_Aclaracion($(id_pv)[0].value);
+    });
+
+
+    //ToolTip para cualquier control
+    //Establecer la propiedad title
+    $('.masterTooltip').click(function () {
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+    }, function () {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+    }).mousemove(function (e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+    });
+
+    //FORMATEO DE CAMPOS EN LA VISTA
+    $(".Fecha").mask("99/99/9999");
+
+    $(".cod").numeric({ decimal: false, negative: true, min: 0, max: 9999 });
+    $(".cod").attr({ maxLength: 4 });
+    $(".cod").css('text-align', 'center');
+
+    $(".nro_pol").numeric({ decimal: false, negative: false, min: 0, max: 9999999 });
+    $(".nro_pol").attr({ maxLength: 7 });
+    $(".nro_pol").css('text-align', 'center');
+
+    $(".Monto").numeric({ decimal: false, negative: false, min: 0, max: 999999999999 });
+
+    $(".Centro").css('text-align', 'center');
+    $(".Derecha").css('text-align', 'right');
+
+    //Busqueda de Producto por Catalogo
+    $("#btn_SelRam").click(function () {
+        var strSel = '';
+        fn_CargaCatalogo("spS_CatalogosOP ==RamU==,====" + strSel, "Unica", "txtClaveRam|txtSearchRam", "RamU", "Productos");
+    });
+
+    //Busqueda de Producto por Clave
+    $("input[id$='txtClaveRam']").focusout(function () {
+        var Id = $("input[id$='txtClaveRam']")[0].value;
+        if (Id == "") {
+            Id = 10000; //Coloca un número inexistente
+        }
+        $.ajax({
+            url: "../LocalServices/ConsultaBD.asmx/GetProducto",
+            data: "{ 'Id': " + Id + "}",
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("input[id$='txtSearchRam']")[0].value = data.d;
+                $(".nro_pol").select();
+            },
+            error: function (response) {
+                fn_MuestraMensaje('JSON', response.responseText, 2);
+            },
+        });
+    });
+
+
 }
 
 
@@ -79,7 +158,7 @@ function fn_MuestraMensaje(Titulo, Mensaje, Tipo, boton) {
     }
     
     fn_AbrirModal('#Mensajes');
-    $('#Mensajes').draggable();
+    //$('#Mensajes').draggable();
 }
 
 //Respuesta del Usuario en Mensaje de Confirmación
@@ -88,12 +167,19 @@ function fn_Repuesta() {
     __doPostBack(document.getElementById('hid_ControlASP').value, '');
 }
 
+
+//Respuesta del Usuario en Mensaje de Confirmación
+function fn_Repuesta_Autoriza() {
+    fn_CerrarModal('#Autorizacion');
+    __doPostBack(document.getElementById('hid_controlAuto').value, '');
+}
+
 //Funciones de Consulta--------------------------------------------------------------------------------------------------------------------------------
 function fn_CargaCatalogo(Consulta, Tipo , Control, Prefijo, Titulo) {
     $.ajax({
         type: 'POST',
         contentType: "application/json; charset=utf-8",
-        url: 'Login.aspx/ObtieneDatos',
+        url: '../LocalServices/ConsultaBD.asmx/ObtieneDatos',
         data: "{ 'Consulta': '" + Consulta + "'}",
         dataType: 'JSON',
         success: function (response) {
@@ -109,6 +195,9 @@ function fn_CargaCatalogo(Consulta, Tipo , Control, Prefijo, Titulo) {
                                                         '<td><input type="checkbox" id="chk_Cat" class="Select" onclick="fn_CambioSeleccion(this,' + "'" + Tipo + "'" + ')" /></td>' +
                                                         '<td><label id="lbl_ClaveCat" class="texto-catalogo" style="Width:75px;">' + response.d[i].Clave + '</label></td>' +
                                                         '<td><label id="lbl_DesCat" class="texto-catalogo" style="Width:205px;">' + response.d[i].Descripcion + '</label></td>' +
+                                                        '<td><label id="lbl_Oculta1" style="display:none;">' + response.d[i].OcultaCampo1 + '</label></td>' +
+                                                        '<td><label id="lbl_Oculta2" style="display:none;">' + response.d[i].OcultaCampo2 + '</label></td>' +
+                                                        '<td><label id="lbl_Oculta3" style="display:none;">' + response.d[i].OcultaCampo3 + '</label></td>' +
                                                    '</tr>')
                 };
                 //Reference the GridView.
@@ -268,3 +357,35 @@ function fn_ElementosSeleccionados(Gread, Control, Seleccion, blnTexto) {
 
     return strSel;
 }
+
+function fn_Seleccion(Control) {
+    $(Control).focus(function () {
+        this.select();
+    });
+}
+
+function fn_Aclaracion(id_pv) {
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        url: '../LocalServices/ConsultaBD.asmx/GetAclaracion',
+        data: "{ 'id_pv': '" + id_pv + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+            if (response.d.length > 0) {
+                fn_CerrarModal('#EsperaModal');
+                $(".Aclaracion")[0].innerHTML = response.d;
+                fn_AbrirModal('#AclaracionesModal');
+            }
+            else {
+                fn_CerrarModal('#EsperaModal');
+                fn_MuestraMensaje('Aclaraciones', 'No se encontraron registros', 0);
+            }
+        },
+        error: function (e) {
+            fn_CerrarModal('#EsperaModal');
+            fn_MuestraMensaje('JSON', e.responseText, 2);
+        }
+    });
+    return false;
+};
